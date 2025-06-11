@@ -4,4 +4,13 @@
   height: 100dvh;
   align-items: center;
   margin: 0 7.5%;
+
+  img {
+    padding-left: 5%;
+  }
+
+  label,
+  button {
+    max-width: 75%;
+  }
 }
