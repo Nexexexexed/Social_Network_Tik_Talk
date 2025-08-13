@@ -1,1 +1,37 @@
-<p>sidebar works!</p>
+<img src="/assets/svg/logo.svg" alt="logo" class="ml16 mb20" />
+<nav>
+  <ul class="main-menu-list">
+    @for(menuItem of menuItems; track menuItem.icon){
+    <li>
+      <button class="menu-item">
+        <svg [icon]="menuItem.icon"></svg>
+        <span>{{ menuItem.label }}</span>
+      </button>
+    </li>
+    }
+  </ul>
+</nav>
+<p class="medium-text mb20">Подписчики</p>
+
+@for(subscriber of subscribers$ | async;track subscriber.id){
+<app-subscriber-card [profile]="subscriber"></app-subscriber-card>
+}
+
+<div class="mt20 to-subscribers">
+  <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text"
+    >Все подписчики ></a
+  >
+</div>
+
+<footer class="sidebar__footer">
+  @if(me(); as profile) { @if(profile.avatarUrl){
+  <img [src]="profile.avatarUrl | imageUrl" />
+  } @else {
+  <img src="/assets/avatar-placeholder.png" />
+  }
+  <div class="medium-text username-text">{{ profile.username }}</div>
+  <a [routerLink]="['settings']" class="settings-btn">
+    <svg icon="setting"></svg>
+  </a>
+  }
+</footer>
